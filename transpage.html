@@ -11,7 +11,21 @@
 <body>
     qweqweqweqweqweqweqwe
     <script>
-        document.cookie="name=qweqwe";
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        document.cookie = 'id=' + getQueryString('id');
+        document.cookie = 'name=' + getQueryString('name');
+        document.cookie = 'avatar_url=' + getQueryString('avatar_url');
+        document.cookie = 'html_url=' + getQueryString('html_url');
+        document.cookie = 'email=' + getQueryString('email');
+        document.cookie = 'bio=' + getQueryString('bio');
+
+        window.location.href = 'http://www.creative6.cn';
     </script>
 </body>
 
