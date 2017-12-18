@@ -36,14 +36,14 @@
         }
 
 
-        setCookie('userinfo', {
+        setCookie('userinfo', JSON.stringify({
             id: getQueryString('id'),
             name: getQueryString('name'),
             avatar_url: getQueryString('avatar_url'),
             html_url: getQueryString('html_url'),
             email: getQueryString('email'),
             bio: getQueryString('bio'),
-        }, 1);
+        }), 1);
 
         window.location.href = 'http://www.creative6.cn';
     </script>
