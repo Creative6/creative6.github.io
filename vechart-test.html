@@ -40,6 +40,9 @@
         <div class="content">
             <ve-pie :data="chartData" :settings="chartSettings" :extend="chartExtend" height="100%"></ve-pie>
         </div>
+        <div class="content">
+            <ve-radar :data="chartData" :settings="chartSettings" :extend="chartExtend" height="100%"></ve-radar>
+        </div>
     </div>
 
     <script>
@@ -92,7 +95,9 @@
                         }
                     ]
                 }
-                this.chartSettings = {}
+                this.chartSettings = {
+                    areaStyle: {}
+                }
 
                 this.chartExtend = {
                     series: {
