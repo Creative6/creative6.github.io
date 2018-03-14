@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/Swiper/4.1.6/css/swiper.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Swiper/4.1.6/js/swiper.min.js"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'qwe';
+        }
+
+        @font-face {
+            font-family: qwe;
+            src: url('./思源黑体正常字体.ttf');
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        .swiper-container {
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+
+        }
+
+        .swiper-container2 {
+            width: 50vw;
+            height: 50vh;
+            background: #fff;
+
+        }
+
+        .content {
+            position: relative;
+            width: 1520px;
+            height: 100vh;
+            background: #000;
+            margin: 0 auto;
+            border-left: 3px solid rgba(210, 210, 210, 0.2);
+        }
+
+        .name {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 150px;
+            font-size: 24px;
+            color: #0000fe;
+        }
+
+        .bigtitle1 {
+            color: #c5c5c5;
+            font-size: 72px;
+            position: absolute;
+            top: 190px;
+            border-bottom: 10px solid #0000fe;
+            line-height: 45px;
+            font-family: qwe;
+        }
+
+        .bigtitle2 {
+            color: #c5c5c5;
+            font-size: 72px;
+            position: absolute;
+            top: 250px;
+            width: 700px;
+            text-align: right;
+            font-family: qwe;
+        }
+
+        .urltitle {
+            width: 380px;
+            position: absolute;
+            /* background: #eee; */
+            bottom: 0px;
+            color: #c5c5c5;
+            font-size: 24px;
+        }
+
+        .urltitle::after {
+            font-size: 18px;
+            color: #464b55;
+            position: absolute;
+            left: 35px;
+            top: 35px;
+            height: 0px;
+        }
+
+        .urltitle span {
+            transition: 0.3s;
+        }
+
+        .urltitle span:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000fe, 0 0 35px #0000fe, 0 0 40px #0000fe, 0 0 50px #0000fe, 0 0 75px #0000fe;
+            cursor: pointer;
+        }
+
+        .faguang {
+            transition: 0.3s;
+        }
+
+        .faguang:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0000fe, 0 0 35px #0000fe, 0 0 40px #0000fe, 0 0 50px #0000fe, 0 0 75px #0000fe;
+            cursor: pointer;
+        }
+
+        .u1 {
+            left: 0px;
+            height: 650px;
+            line-height: 650px;
+            border-right: 3px solid rgba(210, 210, 210, 0.1);
+        }
+
+        .u2 {
+            left: 380px;
+            height: 420px;
+            line-height: 320px;
+            border-right: 3px solid rgba(210, 210, 210, 0.1);
+        }
+
+        .u3 {
+            left: 760px;
+            height: 380px;
+            line-height: 380px;
+        }
+
+        .u1::after {
+            content: 'ABOUT ME';
+
+        }
+
+        .u2::after {
+            content: 'EXPERIENCE';
+
+        }
+
+        .u3::after {
+            content: 'WORKS';
+
+        }
+
+        .oldyear {
+            position: absolute;
+            top: 420px;
+            left: 760px;
+            font-size: 118px;
+            color: #c5c5c5;
+            text-decoration-line: line-through;
+        }
+
+        .year {
+            width: 380px;
+            left: 1140px;
+            position: absolute;
+            bottom: 0px;
+            color: #c5c5c5;
+            height: 100%;
+            border-left: 3px solid rgba(210, 210, 210, 0.2);
+            border-right: 3px solid rgba(210, 210, 210, 0.1);
+        }
+
+        .yearbox {
+            width: 220px;
+            height: 220px;
+            background: #0000fe;
+            font-size: 72px;
+            text-align: center;
+            line-height: 383px;
+            transform: rotate(-90deg) translate(50%, 0);
+            position: absolute;
+            top: 50%;
+        }
+
+        .ytitle {
+            font-size: 120px;
+            font-family: arial;
+            color: #464b55;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            right: -145px;
+        }
+
+        .sbox {
+            position: absolute;
+            color: #c5c5c5;
+        }
+
+        .snum {
+            font-size: 36px;
+        }
+
+        .sline {
+            width: 350px;
+            height: 2px;
+            background: #c5c5c5;
+            margin-top: 20px;
+        }
+
+        .stitle {
+            margin-top: 40px;
+            font-size: 36px;
+        }
+
+        .stitle span {
+            font-size: 24px;
+            color: #464b55;
+        }
+
+        .imgbox {
+            width: 80%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -35%);
+            color: #c5c5c5;
+        }
+
+        .imgbox img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .name2 {
+            position: absolute;
+            top: 165px;
+            left: 360px;
+            font-size: 36px;
+            border-bottom: 5px solid #0000fe;
+            padding: 0px 20px;
+            line-height: 30px;
+        }
+
+        .infobox {
+            position: absolute;
+            top: 235px;
+            left: 360px;
+            font-size: 18px;
+        }
+
+        .infobox div {
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        .comtime {
+            font-size: 24px;
+            color: #464b55;
+            position: absolute;
+            top: 530px;
+            left: 360px;
+        }
+
+        .comtime span {
+            color: #c5c5c5;
+        }
+
+        .icon {
+            position: absolute;
+            top: 165px;
+            width: 220px !important;
+            height: 280px !important;
+            right: 265px;
+            z-index: 2;
+        }
+
+        .iconbg {
+            position: absolute;
+            top: 175px;
+            width: 220px;
+            height: 280px;
+            right: 255px;
+            z-index: 1;
+            background: #0000fe;
+        }
+
+        .ms {
+            font-size: 18px;
+            position: absolute;
+            top: 490px;
+            right: 255px;
+        }
+
+        .yb {
+            width: 10px;
+            height: 10px;
+            background: #0000fe;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .ybno {
+            background: #444;
+        }
+
+        .yb1 {
+            position: absolute;
+            top: 535px;
+            right: 260px;
+        }
+
+        .yb2 {
+            position: absolute;
+            top: 535px;
+            right: 320px;
+        }
+
+        .infobox2 {
+            position: absolute;
+            top: 180px;
+        }
+
+        .contentbox {
+            height: 880px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .econtent {
+            position: absolute;
+            top: 1px;
+            color: #c5c5c5;
+        }
+
+        .etime {
+            font-size: 36px;
+            z-index: 2;
+            position: absolute;
+            width: 270px;
+            text-align: center;
+        }
+
+        .eimg {
+            position: absolute;
+            top: 30px;
+            left: 85px;
+            z-index: 1;
+        }
+
+        .einfo {
+            font-size: 24px;
+            position: absolute;
+            width: 445px;
+            left: 178px;
+            top: 55px;
+        }
+
+        .infobox3 {
+            width: 1520px;
+            height: 700px;
+            position: absolute;
+            background: #131313;
+            top: 180px;
+            color: #c5c5c5;
+        }
+
+        .sb1 {
+            width: 150px;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+        }
+
+        .sb2 {
+            width: 626px;
+            height: 100%;
+            position: absolute;
+            left: 150px;
+            border-left: 2px solid #464b55;
+        }
+
+        .sb3 {
+            width: 346px;
+            height: 100%;
+            position: absolute;
+            left: 776px;
+            border-left: 2px solid #464b55;
+        }
+
+        .sb4 {
+            width: 398px;
+            height: 100%;
+            position: absolute;
+            left: 1122px;
+            border-left: 2px solid #464b55;
+        }
+
+
+        .wline {
+            background: #c5c5c5;
+            width: 150px;
+            height: 2px;
+            position: absolute;
+            top: 15px;
+        }
+
+        .wtitle {
+            font-size: 36px;
+            color: #c5c5c5;
+            border-bottom: 5px solid #0000fe;
+            position: absolute;
+            left: 170px;
+            line-height: 25px;
+            padding: 0px 25px;
+        }
+
+        .wimg {
+            width: 1520px;
+            height: calc(100% - 70px);
+            position: absolute;
+            top: 85px;
+            overflow: hidden;
+            background: #1b1b1b;
+        }
+
+        .img100 {
+            width: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .returnlist {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            color: #eee;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                loop: true,
+
+                // 如果需要分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+
+                // // 如果需要前进后退按钮
+                // navigation: {
+                //     nextEl: '.swiper-button-next',
+                //     prevEl: '.swiper-button-prev',
+                // },
+
+                // 如果需要滚动条
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                },
+
+            })
+
+            var mySwiper2 = new Swiper('.swiper-container2', {
+                direction: 'horizontal',
+                loop: true,
+                lazy: {
+                    loadPrevNext: true,
+                },
+                // // 如果需要分页器
+                // pagination: {
+                //     el: '.swiper-pagination',
+                // },
+
+                // 如果需要前进后退按钮
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+                // 如果需要滚动条
+                scrollbar: {
+                    el: '.swiper-scrollbar',
+                },
+
+            })
+
+            $('.yb1').addClass('ybno');
+            $('.yb1').click(function () {
+                $('.icon').attr('src', './static/picture.png')
+                $('.yb2').addClass('ybno');
+                $('.yb1').removeClass('ybno');
+            })
+
+            $('.yb2').click(function () {
+                $('.icon').attr('src', './static/icon.png')
+                $('.yb1').addClass('ybno');
+                $('.yb2').removeClass('ybno');
+            })
+
+            $('.u1 span').click(function () {
+                mySwiper.slideTo(2)
+            });
+
+            $('.u2 span').click(function () {
+                mySwiper.slideTo(3)
+            });
+
+            $('.u3 span').click(function () {
+                mySwiper.slideTo(4)
+            });
+            $('.returnlist').click(function () {
+                mySwiper.slideTo(4)
+            });
+            $('.t1').click(function () {
+                mySwiper.slideTo(5)
+            });
+            $('.t2').click(function () {
+                mySwiper.slideTo(6)
+            });
+            $('.t3').click(function () {
+                mySwiper.slideTo(7)
+            });
+            $('.t4').click(function () {
+                mySwiper.slideTo(8)
+            });
+            $('.t5').click(function () {
+                mySwiper.slideTo(9)
+            });
+            // $('.t6').click(function () {
+            //     mySwiper.slideTo(10)
+            // });
+            $('.t7').click(function () {
+                mySwiper.slideTo(10)
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="name">Yazhen_Wu</div>
+                    <div class="bigtitle1">Data Visualization</div>
+                    <div class="bigtitle2">DESIGN</div>
+                    <div class="urltitle u1">
+                        <span>01.个人简介</span>
+                    </div>
+                    <div class="urltitle u2">
+                        <span>02.工作经验</span>
+                    </div>
+                    <div class="urltitle u3">
+                        <span>03.作品集</span>
+                    </div>
+                    <div class="oldyear">2017!</div>
+                    <div class="year">
+                        <div class="yearbox">2018</div>
+                        <div class="ytitle">BEGIN</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="sbox">
+                            <div class="snum">01.</div>
+                            <div class="sline"></div>
+                            <div class="stitle">个人简介
+                                <span>ABOUT ME</span>
+                            </div>
+                        </div>
+                        <div class="imgbox">
+                            <img src="./static/infor_bg.png" alt="">
+                            <div class="name2">
+                                吴雅真
+                            </div>
+                            <div class="infobox">
+                                <div>东南大学成贤学院 计算机科学与技术(软件工程) 本科</div>
+                                <div>女/党员/江苏 南通</div>
+                                <div>1993/8</div>
+                                <div>15195605075</div>
+                                <div>wyz1361300268@162.com</div>
+                            </div>
+                            <div class="comtime">2017!
+                                <span>　/</span>　2018?</div>
+                            <img src="./static/icon.png" alt="" class="icon">
+                            <div class="iconbg"></div>
+                            <div class="ms">数据可视化设计师/网页设计师</div>
+                            <div class="yb yb1"></div>
+                            <div class="yb yb2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="sbox">
+                            <div class="snum">02.</div>
+                            <div class="sline"></div>
+                            <div class="stitle">工作经验
+                                <span>EXPERIENCE</span>
+                            </div>
+                        </div>
+                        <div class="infobox2">
+                            <img src="./static/bg.png" alt="">
+                            <div class="econtent" style="left: 80px;top: 80px;">
+                                <div class="etime">2015.11-2016.6</div>
+                                <img src="./static/location.png" alt="" class="eimg">
+                                <div class="einfo">南京多玩网络科技有限公司
+                                    <br>网页设计师</div>
+                            </div>
+                            <div class="econtent" style="left: 900px;top: 380px;">
+                                <div class="etime">2017.2-2018.3</div>
+                                <img src="./static/location.png" alt="" class="eimg">
+                                <div class="einfo">苏州无限愿景信息科技有限公司
+                                    <br>交互数据可视化设计师</div>
+                            </div>
+                            <div class="econtent" style="left: 400px;top: 500px;">
+                                <div class="etime">2016.7-2017.2</div>
+                                <img src="./static/location.png" alt="" class="eimg">
+                                <div class="einfo">苏州越吴股份旗下来聘网络科技有限公司
+                                    <br>平面设计师</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="sbox">
+                            <div class="snum">03.</div>
+                            <div class="sline"></div>
+                            <div class="stitle">作品集
+                                <span>WORKS</span>
+                            </div>
+                        </div>
+                        <div class="infobox3">
+                            <div class="sb1">
+                                <div style="position: absolute;width: 100%;height: 3px;background: #c5c5c5;top: 100px;"></div>
+                            </div>
+                            <div class="sb2">
+                                <div style="font-size: 36px;border-bottom: 5px solid #0000fe;position: absolute;padding: 0px 30px;line-height: 25px;top: 100px;">吴雅真</div>
+                                <div style="width: 100px;height: 100px;background: #0000fe;position: absolute;top: 175px;"></div>
+                                <div style="width: 90px;height: 90px;position: absolute;top: 389px;background: #0000fe;"></div>
+                                <div style="font-size: 60px;top: 200px;position: absolute;">2017/12</div>
+                                <div style="font-size: 24px;top: 285px;position: absolute;" class="faguang t1">北京危险货物运输智能化分析与服务平台</div>
+                                <div style="position: absolute;font-size: 18px;color: #464b55;top: 320px;">独立负责整个项目的设计，辅助开发</div>
+                                <div style="font-size: 50px;position: absolute;top: 400px;">2017/10</div>
+                                <div style="font-size: 24px;position: absolute;top: 490px;" class="faguang t2">新疆安全生产态势分析信息系统</div>
+                                <div style="position: absolute;font-size: 18px;color: #464b55;top: 525px;">独立负责整个项目的设计，辅助开发</div>
+                                <div style="font-size: 24px;bottom: 40px;position: absolute;color: #464b55;">2017!
+                                    <span style="color: #ccc;">　/　</span>2018?</div>
+                            </div>
+                            <div class="sb3">
+                                <div style="width: 80px;height: 80px;background: #0000fe;position: absolute;top: 88px;"></div>
+                                <div style="width: 80px;height: 80px;background: #0000fe;position: absolute;top: 326px;"></div>
+                                <div style="font-size: 50px;left: 30px;position: absolute;top: 100px;">2017/9</div>
+                                <div style="font-size: 24px;position: absolute;top: 180px;" class="faguang t3">上海通号大数据分析平台</div>
+                                <div style="font-size: 18px;color: #464b55;position: absolute;top: 215px;">独立负责整个项目的设计，辅助开发</div>
+                                <div style="font-size: 50px;position: absolute;top: 310px;">2017/6</div>
+                                <div style="font-size: 24px;position: absolute;top: 420px;" class="faguang t4">联通PCSD作战指挥室平台</div>
+                                <div style="font-size: 18px;color: #464b55;position: absolute;top: 455px;">独立负责整个项目的设计，辅助开发</div>
+                            </div>
+                            <div class="sb4">
+                                <div style="width: 70px;height: 70px;background: #0000fe;position: absolute;top: 36px;"></div>
+                                <div style="width: 70px;height: 70px;background: rgb(23, 23, 206);top: 291px;position: absolute;"></div>
+                                <div style="width: 70px;height: 70px;background: #2222a9;position: absolute;top: 534px;"></div>
+                                <div style="font-size: 50px;position: absolute;top: 50px;left: 20px;">2017/5</div>
+                                <div style="font-size: 24px;position: absolute;top: 130px;" class="faguang t5">农业保险GIS平台</div>
+                                <div style="font-size: 18px;color: #464b55;position: absolute;top: 165px;width: 290px;">与设计伙伴共同负责整个项目设计，负责整体框架的设计</div>
+                                <div style="font-size: 50px;position: absolute;top: 255px;">2017/4</div>
+                                <div style="font-size: 24px;position: absolute;top: 370px;" class="faguang t6">天津北辰智慧城管平台</div>
+                                <div style="position: absolute;font-size: 18px;color: #464b55;top: 405px;width: 290px;">辅助项目的设计，统计页面的设计，后期调整，辅助开发</div>
+                                <div style="font-size: 50px;position: absolute;top: 500px;">2017</div>
+                                <div style="font-size: 24px;position: absolute;top: 610px;" class="faguang t7">其他作品</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">北京危险货物运输智能化分析与服务平台</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/11.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/12.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/13.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">新疆安全生产态势分析信息系统</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/21.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/22.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/23.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">上海通号大数据分析平台</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/31.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/32.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">联想PCSD作战指挥室平台</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/41.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/42.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/43.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/44.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/45.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/46.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">农业保险GIS平台</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/51.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/52.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox">
+                        <div class="wline"></div>
+                        <div class="wtitle">其他作品</div>
+                        <div class="returnlist faguang">返回项目列表</div>
+                        <!-- <img src="./static/TIM图片20180312112437.png" alt="" class="wimg"> -->
+                        <div class="swiper-container2 wimg">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="./static/71.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/72.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/73.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/74.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/75.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/76.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="./static/77.jpg" alt="" class="img100 swiper-lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="content">
+                    <div class="contentbox" style="color:#c5c5c5;">
+                        <div style="font-size: 40px;position: absolute;top: 500px;">2018.</div>
+                        <div style="width: 350px;height: 2px;background: #c5c5c5;position: absolute;top: 565px;"></div>
+                        <div style="font-size: 35px;position: absolute;top: 595px;">起航！</div>
+                        <div style="font-size: 24px;color: #464b55;position: absolute;top: 610px;left: 170px;">BEGINING</div>
+                        <div style="width: 700px;background: #0000fe;height: 360px;position: absolute;right: 130px;top: 120px;"></div>
+                        <div style="font-size: 35px;position: absolute;right: 587px;top: 165px;">2017</div>
+                        <div style="width: 7px;height: 50px;background: #ccc;position: absolute;right: 620px;top: 249px;"></div>
+                        <div style="width: 8px;height: 50px;background: #1d1d1d;position: absolute;right: 620px;top: 298px;"></div>
+                        <div style="font-size: 35px;position: absolute;right: 587px;top: 376px;">2018</div>
+                        <div style="position: absolute;width: 270px;height: 270px;background: #eee;color: #222;text-align: center;font-size: 72px;text-indent: -4px;line-height: 262px;right: 178px;top: 167px;transform: rotate(-90deg);">THANKS</div>
+                        <div style="width: 700px;height: 120px;border: 5px solid #0000fe;position: absolute;right: 130px;bottom: 100px;"></div>
+                        <img src="./static/phone.png" alt="" style="position: absolute;right: 730px;bottom: 164px;">
+                        <img src="./static/email.png" alt="" style="position: absolute;right: 730px;bottom: 118px;">
+                        <div style="position: absolute;right: 565px;bottom: 162px;font-size: 24px;">15195605075</div>
+                        <div style="position: absolute;right: 420px;bottom: 112px;font-size: 24px;">wyz1361300268@163.com</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+
+        <!-- 如果需要滚动条 -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+</body>
+
+</html>
