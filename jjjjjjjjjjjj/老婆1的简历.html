@@ -443,13 +443,20 @@
             color: #eee;
             cursor: pointer;
         }
+
+        .returntop{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            color:#ccc;
+        }
     </style>
     <script>
         $(function () {
             var mySwiper = new Swiper('.swiper-container', {
                 direction: 'vertical',
-                loop: true,
-
+                loop: false,
+                mousewheel: true,
                 // 如果需要分页器
                 pagination: {
                     el: '.swiper-pagination',
@@ -506,39 +513,42 @@
             })
 
             $('.u1 span').click(function () {
-                mySwiper.slideTo(2)
+                mySwiper.slideTo(1)
             });
 
             $('.u2 span').click(function () {
-                mySwiper.slideTo(3)
+                mySwiper.slideTo(2)
             });
 
             $('.u3 span').click(function () {
-                mySwiper.slideTo(4)
+                mySwiper.slideTo(3)
             });
             $('.returnlist').click(function () {
-                mySwiper.slideTo(4)
+                mySwiper.slideTo(3)
+            });
+            $('.returntop').click(function () {
+                mySwiper.slideTo(0)
             });
             $('.t1').click(function () {
-                mySwiper.slideTo(5)
+                mySwiper.slideTo(4)
             });
             $('.t2').click(function () {
-                mySwiper.slideTo(6)
+                mySwiper.slideTo(5)
             });
             $('.t3').click(function () {
-                mySwiper.slideTo(7)
+                mySwiper.slideTo(6)
             });
             $('.t4').click(function () {
-                mySwiper.slideTo(8)
+                mySwiper.slideTo(7)
             });
             $('.t5').click(function () {
-                mySwiper.slideTo(9)
+                mySwiper.slideTo(8)
             });
             // $('.t6').click(function () {
             //     mySwiper.slideTo(10)
             // });
             $('.t7').click(function () {
-                mySwiper.slideTo(10)
+                mySwiper.slideTo(9)
             });
         })
     </script>
@@ -571,6 +581,7 @@
             <div class="swiper-slide">
                 <div class="content">
                     <div class="contentbox">
+                        <div class="returntop faguang">返回首页</div>
                         <div class="sbox">
                             <div class="snum">01.</div>
                             <div class="sline"></div>
@@ -604,6 +615,7 @@
             <div class="swiper-slide">
                 <div class="content">
                     <div class="contentbox">
+                            <div class="returntop faguang">返回首页</div>
                         <div class="sbox">
                             <div class="snum">02.</div>
                             <div class="sline"></div>
@@ -638,6 +650,7 @@
             <div class="swiper-slide">
                 <div class="content">
                     <div class="contentbox">
+                            <div class="returntop faguang">返回首页</div>
                         <div class="sbox">
                             <div class="snum">03.</div>
                             <div class="sline"></div>
@@ -856,7 +869,9 @@
             </div>
             <div class="swiper-slide">
                 <div class="content">
+ 
                     <div class="contentbox" style="color:#c5c5c5;">
+                            <div class="returntop faguang">返回首页</div>
                         <div style="font-size: 40px;position: absolute;top: 500px;">2018.</div>
                         <div style="width: 350px;height: 2px;background: #c5c5c5;position: absolute;top: 565px;"></div>
                         <div style="font-size: 35px;position: absolute;top: 595px;">起航！</div>
