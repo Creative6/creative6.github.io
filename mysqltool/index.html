@@ -80,7 +80,7 @@
                         // database: $('#database').val(),
                     };
 
-                    $.post('http://localhost:3456/getMySqlData', p, (rs => {
+                    $.post('http://101.132.128.112:3456/getMySqlData', p, (rs => {
                         console.log(rs)
                         if (rs.state) {
                             localStorage.setItem('dbinfo', JSON.stringify(p))
