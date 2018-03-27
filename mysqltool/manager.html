@@ -164,7 +164,7 @@
             ac = $(t);
             $('.biao').empty();
 
-            $.post('http://localhost:3456/gettables', dbinfo, (rs) => {
+            $.post('http://101.132.128.112:3456/gettables', dbinfo, (rs) => {
                 console.log(rs)
                 if (rs.state) {
                     var tableHTML = [];
@@ -194,7 +194,7 @@
             ac2 = $(t);
 
             $.ajax({
-                url: 'http://localhost:3456/getdata',
+                url: 'http://101.132.128.112:3456/getdata',
                 data: dbinfo,
                 type: 'POST',
                 beforeSend: function () {
@@ -233,7 +233,7 @@
                 alert('该语句会对数据库结构造成影响，如果需要，请注销该段代码');
             } else {
                 $.ajax({
-                    url: 'http://localhost:3456/getdata',
+                    url: 'http://101.132.128.112:3456/getdata',
                     data: dbinfo,
                     type: 'POST',
                     beforeSend: function () {
