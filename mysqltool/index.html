@@ -65,11 +65,11 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(function () {
-            $('#host').val('www.mobius-vision.com'),
+            $('#host').val(''),
                 $('#port').val(3306),
                 $('#user').val('root'),
-                $('#password').val('mobiusVision2016'),
-                $('#database').val('test'),
+                $('#password').val(''),
+//                 $('#database').val(''),
 
                 $('#connect').click(function () {
                     var p = {
@@ -114,10 +114,10 @@
             <div class="subtitle">密码</div>
             <input type="text" id="password">
         </div>
-        <div class="linebox">
+<!--         <div class="linebox">
             <div class="subtitle">数据库</div>
             <input type="text" id="database">
-        </div>
+        </div> -->
         <button id="connect">连接</button>
     </div>
 </body>
