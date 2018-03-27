@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MySql Tool</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .left {
+            float: left;
+            background: #eee;
+            width: 200px;
+            height: 100vh;
+            border: 1px solid rgb(170, 170, 170);
+            position: relative;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 300;
+            padding: 10px;
+            background: #ccc;
+            position: absolute;
+            width: 100%;
+        }
+
+
+        .databases {
+            padding-top: 50px;
+            overflow: auto;
+            height: 100vh;
+        }
+
+        .databasesline {
+            text-indent: 10px;
+            padding: 8px;
+            font-size: 14px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .databasesline:hover {
+            background: #ccc;
+        }
+
+        .databasesline_active {
+            background: #b4d8bf;
+        }
+
+        .databasesline_active2 {
+            background: #d8b4b4;
+        }
+
+        .right {
+            float: left;
+            width: calc(100vw - 400px);
+            height: 100vh;
+        }
+
+        .box {
+            width: 100%;
+            border: 1px solid #a9a9a9;
+            position: relative;
+        }
+
+        .box2 {
+            width: 100%;
+            height: calc(100% - 50px);
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: 50px;
+            font-size: 13px;
+            color: #2a7796;
+            word-break: break-word;
+        }
+
+        .box2t {
+            float: left;
+            width: 100%;
+            font-family: -webkit-body;
+            resize: none;
+            outline: none;
+            height: calc(100% - 55px);
+        }
+
+        .searchbtn {
+            margin-top: 10px;
+            float: right;
+            width: 100px;
+            height: 35px;
+            cursor: pointer;
+        }
+
+        .key {
+            color: #d89b9b;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #245b94;
+        }
+
+        .number {
+            color: #1ed01e;
+        }
+
+        .boolean {
+            color: #555;
+            font-weight: bold;
+        }
+
+        .null {
+            color: #ccc;
+        }
+
+        pre {
+            font-family: consolas;
+        }
+
+        .back {
+            display: none;
+            width: 30px;
+            left: 85px;
+            position: absolute;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var dbinfo = JSON.parse(localStorage.getItem('dbinfo'));
+        $(function () {
+            var databases = JSON.parse(localStorage.getItem('databases'));
+            var databasesHTML = [];
+            for (var i = 0; i < databases.length; i++) {
+                databasesHTML.push('<div class="databasesline" onclick="gettables(this)">' + databases[i].Database +
+                    '</div>')
+            }
+            $('.ku').append(databasesHTML.join(''));
+        })
+
+        var ac = undefined;
+
+        function gettables(t) {
+            $('.box2t').val('');
+            $('.content').empty();
+            dbinfo.database = $(t).text();
+            if (ac) {
+                ac.removeClass('databasesline_active');
+            }
+            $(t).addClass('databasesline_active');
+            ac = $(t);
+            $('.biao').empty();
+
+            $.post('http://localhost:3456/gettables', dbinfo, (rs) => {
+                console.log(rs)
+                if (rs.state) {
+                    var tableHTML = [];
+                    for (var i = 0; i < rs.data.length; i++) {
+                        tableHTML.push('<div class="databasesline" onclick="getdata(this)">' + rs.data[i][
+                                'Tables_in_' + $(t).text()
+                            ] +
+                            '</div>')
+                    }
+                    $('.biao').append(tableHTML.join(''));
+                } else {
+                    alert(rs.msg)
+                }
+            })
+        }
+
+        var ac2 = undefined;
+
+        function getdata(t) {
+            $('.box2t').val('');
+            dbinfo.sql = '';
+            dbinfo.tablename = $(t).text();
+            if (ac2) {
+                ac2.removeClass('databasesline_active2');
+            }
+            $(t).addClass('databasesline_active2');
+            ac2 = $(t);
+
+            $.ajax({
+                url: 'http://localhost:3456/getdata',
+                data: dbinfo,
+                type: 'POST',
+                beforeSend: function () {
+                    $('.back').show();
+                },
+                success: (rs) => {
+                    setTimeout(() => {
+                        $('.back').hide();
+                    }, 500);
+                    if (rs.state) {
+                        $('.content').empty();
+                        setTimeout(() => {
+                            $('.content').append(syntaxHighlight(JSON.stringify(rs.data, undefined,
+                                4)));
+                        }, 0);
+                    } else {
+                        alert(rs.msg);
+                    }
+
+                }
+            })
+        }
+
+        function search() {
+            if ($('.databasesline_active2').length <= 0) {
+                alert('请先在左侧选择表');
+                return;
+            }
+            var q = $('.box2t').val();
+            dbinfo.sql = q;
+            if (q === '') {
+                alert('无语句');
+            } else if (q.indexOf('update') >= 0 || q.indexOf('UPDATE') >= 0 || q.indexOf('insert') >= 0 || q.indexOf(
+                    'INSERT') >=
+                0 || q.indexOf('delete') >= 0 || q.indexOf('DELETE') >= 0) {
+                alert('该语句会对数据库结构造成影响，如果需要，请注销该段代码');
+            } else {
+                $.ajax({
+                    url: 'http://localhost:3456/getdata',
+                    data: dbinfo,
+                    type: 'POST',
+                    beforeSend: function () {
+                        $('.back').show();
+                    },
+                    success: (rs) => {
+                        setTimeout(() => {
+                            $('.back').hide();
+                        }, 500);
+                        if (rs.state) {
+                            $('.content').empty();
+                            setTimeout(() => {
+                                $('.content').append(syntaxHighlight(JSON.stringify(rs.data,
+                                    undefined,
+                                    4)));
+                            }, 0);
+                        } else {
+                            alert(rs.msg);
+                        }
+
+                    }
+                })
+            }
+            console.log(q);
+        }
+
+
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(
+                /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+                function (match) {
+                    var cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'key';
+                        } else {
+                            cls = 'string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <!-- <div class="back">
+        <img src="./images/loading.svg" alt="" class="loading">
+    </div> -->
+
+    <div class="left">
+        <div class="title">数据库</div>
+        <div class="databases ku"></div>
+    </div>
+    <div class="left">
+        <div class="title">表</div>
+        <div class="databases biao"></div>
+    </div>
+    <div class="right">
+        <div class="box" style="height:30vh;">
+            <div class="title">sql语句</div>
+            <div class="box2">
+                <textarea name="" id="" cols="30" rows="10" class="box2t"></textarea>
+                <button class="searchbtn" onclick="search()">查询</button>
+            </div>
+        </div>
+        <div class="box" style="height:70vh;">
+            <div class="title">结果集
+                <img src="./images/loading.svg" alt="" class="back">
+            </div>
+            <div class="box2">
+                <pre class="content"></pre>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

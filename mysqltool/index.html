@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MySql Tool</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            float: right;
+            width: 230px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 15px;
+            color: green;
+        }
+
+
+        button {
+            width: 300px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 300;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            line-height: 30px;
+            float: left;
+            font-weight: 300;
+            color: #555;
+        }
+
+        .linebox {
+            overflow: hidden;
+        }
+
+        .content {
+            position: absolute;
+            padding: 15px;
+            box-shadow: 0px 1px 15px #ccc;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#host').val('www.mobius-vision.com'),
+                $('#port').val(3306),
+                $('#user').val('root'),
+                $('#password').val('mobiusVision2016'),
+                $('#database').val('test'),
+
+                $('#connect').click(function () {
+                    var p = {
+                        host: $('#host').val(),
+                        port: $('#port').val(),
+                        user: $('#user').val(),
+                        password: $('#password').val(),
+                        // database: $('#database').val(),
+                    };
+
+                    $.post('http://localhost:3456/getMySqlData', p, (rs => {
+                        console.log(rs)
+                        if (rs.state) {
+                            localStorage.setItem('dbinfo', JSON.stringify(p))
+                            localStorage.setItem('databases', JSON.stringify(rs.data))
+                            window.location.href = window.location.href + 'manager.html';
+                        } else {
+                            alert('连接失败' + rs.msg)
+                        }
+                    }))
+                })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="title">MySql Tool</div>
+        <div class="linebox">
+            <div class="subtitle">服务器</div>
+            <input type="text" id="host">
+        </div>
+        <div class="linebox">
+            <div class="subtitle">端口</div>
+            <input type="text" id="port">
+        </div>
+        <div class="linebox">
+            <div class="subtitle">用户名</div>
+            <input type="text" id="user">
+        </div>
+        <div class="linebox">
+            <div class="subtitle">密码</div>
+            <input type="text" id="password">
+        </div>
+        <div class="linebox">
+            <div class="subtitle">数据库</div>
+            <input type="text" id="database">
+        </div>
+        <button id="connect">连接</button>
+    </div>
+</body>
+
+</html>
