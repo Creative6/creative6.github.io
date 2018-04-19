@@ -1,12 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link href="https://cdn.bootcss.com/Swiper/4.2.2/css/swiper.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/Swiper/4.2.2/js/swiper.js"></script>
     <title>Document</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .search {
+            height: 30px;
+            width: 90%;
+            margin-left: 5%;
+            margin-top: 5px;
+        }
+
+        .nv {
+            height: 50px;
+            background: #ccc;
+        }
+
+        .content {
+            height: calc(100vh - 100px);
+            background: #eee;
+        }
+
+        .box {
+            float: left;
+            width: 20%;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .leftbox {
+            width: 100px;
+            background: #aaa;
+            height: 100%;
+            overflow: auto;
+            float: left;
+            position: relative;
+        }
+
+        .trans {
+            position: absolute;
+            height: 50px;
+            transition: 0.2s;
+            left: 0px;
+            top: 0px;
+            width: 10px;
+            background: #444;
+        }
+
+        .rightbox {
+            width: calc(100vw - 100px);
+            background: rgb(199, 170, 170);
+            float: left;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .swiper-container {
+            /* width: 600px;
+            height: 300px; */
+            width: calc(100vw - 100px);
+            background: rgb(199, 170, 170);
+            float: left;
+            height: 100%;
+        }
+
+        .list {
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .transbox {
+            overflow: auto;
+        }
+
+        .transbox:nth-child(1) {
+            background: #777;
+        }
+
+        .transbox:nth-child(2) {
+            background: #888;
+        }
+
+        .transbox:nth-child(3) {
+            background: #999;
+        }
+
+        .scontent {
+            /* background: red */
+            height: 100%;
+            overflow: auto;
+        }
+
+        .test {
+            width: 137px;
+            height: 300px;
+            background: red;
+            overflow: auto;
+        }
+
+        .testcontent {}
+    </style>
+    <script>
+        $(function () {
+            // $('body').on('touchend', function () {
+            //     console.log(1)
+            // })
+
+            // $('.list').click(function () {
+            //     // $(".rightbox").scrollTop($(this).text() * 1 * 100)
+            //     // $(".rightbox").scrollTop($('.in' + $(this).text() * 1).offset().top)
+            //     $(".rightbox").animate({
+            //         scrollTop: $('.in' + $(this).text()).offset().top
+            //     }, 500);
+            // })
+
+            $('.list').click(function () {
+                mySwiper.slideTo($(this).text() * 1 - 1)
+            })
+
+            var mySwiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                loop: false,
+                on: {
+                    slideNextTransitionEnd: function () {
+                        $('.trans').css('transform', 'translateY(' + (50 * (mySwiper.activeIndex)) +
+                            'px)')
+                    },
+                    slidePrevTransitionEnd: function () {
+                        $('.trans').css('transform', 'translateY(' + (50 * (mySwiper.activeIndex)) +
+                            'px)')
+                    },
+
+                },
+            })
+        })
+    </script>
 </head>
+
 <body>
-   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    <div class="top nv">
+        <input type="text" class="search" placeholder="search">
+    </div>
+    <div class="content">
+        <div class="leftbox">
+            <div class="list">1</div>
+            <div class="list">2</div>
+            <div class="list">3</div>
+            <div class="trans"></div>
+        </div>
+        <!-- <div class="rightbox"> -->
+        <!-- <div class="transbox in1">1</div>
+            <div class="transbox in2">2</div>
+            <div class="transbox in3">3</div> -->
+
+        <!-- </div> -->
+        <div class="swiper-container rightbox">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide transbox">
+                    <div class="test">
+                        <div class="testcontent">qweqweqewcnpm</div>
+                    </div>
+                </div>
+                <div class="swiper-slide transbox">2</div>
+                <div class="swiper-slide transbox">3</div>
+            </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+    <div class="bottom nv">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
 </body>
+
 </html>
